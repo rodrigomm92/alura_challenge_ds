@@ -7,7 +7,9 @@ Desafio de Data Science da plataforma Alura. Projeto de redução da Taxa de Eva
 
 # 1.0 - Business Problem (Fictitious Scenario)
 
-Após alguns anos de atuação, a empresa de teletomunicações Alura Voz, precisou realizar uma reunião com o time de vendas e com o time de dados. Durante a reunião, muitos pontos importantes foram levantados. Porém, dada a priorização de recursos, foi decidido que as equipes precisarão focar na redução da taxa de evasão de clientes (churn rate). Com a definição do projeto e da estratégia, a equipe de dados iniciou suas atividades para resolver este problema da empresa.
+Após alguns anos de atuação, a empresa de teletomunicações Alura Voz precisou realizar uma reunião com o time de vendas e com o time de dados. Durante a reunião, muitos pontos importantes foram levantados. Porém, dada a priorização de recursos, foi decidido que as equipes precisarão focar na redução da taxa de evasão de clientes (churn rate). Com a definição do projeto e da estratégia, a equipe de dados iniciou suas atividades para resolver este problema da empresa.
+
+O conjunto de dados usado pode ser encontrado no <a href="https://github.com/sthemonica/alura-voz">Repositório da Alura Voz</a>.
 
 |Atributo | Definição
 ------------ | -------------
