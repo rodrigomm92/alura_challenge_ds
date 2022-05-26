@@ -39,6 +39,7 @@ O conjunto de dados usado pode ser encontrado no <a href="https://github.com/sth
 # 2.0 - Business Assumptions
 
 
+
 # 3.0 - Solution Strategy
 
 O desenvolvimento da solução seguirá a metodologia CRISP-DM/DS:
@@ -51,9 +52,9 @@ O desenvolvimento da solução seguirá a metodologia CRISP-DM/DS:
 
 4. **Data cleaning:** Utilizar python e algumas de suas bibliotecas para checar outliers, detecção/tratamento de valores faltantes e realizer engenharia de recursos.
 
-5. **Exploratory data analysis:** Gerar insights e entender como as variáveis do nosso dataset se relacionam com a nossa variável resposta. Nesta etapa já conseguimos gerar valor para o time de negócio, ao mesmo tempo em que identificamos variáveis importantes para utilizar no modelo.
+5. **Exploratory data analysis:** Gerar insights e entender como as variáveis do nosso dataset se relacionam com a nossa variável resposta. Nesta etapa já conseguimos gerar valor para o time de negócio, ao mesmo tempo em que identificamos variáveis importantes para utilizar no modelo. Para checar detalhadamente a análise, basta acessar <a href="https://github.com/rodrigomm92/alura_challenge_ds/blob/main/notebooks/eda_feature_engineering.ipynb">este jupyter notebook</a>.
 
-6. **Modeling:** Com as análises feitas na EDA e utilizando o algoritmo Extra Tree Classifier, conseguimos ter ainda mais clareza acerca das variáveis importantes para o modelo. Nesta etapa, além de converter as variáveis categóricas em númericas, iremos normalizar seus valores e balancear o nosso conjunto de dados, visando um melhor desempenho para os modelos.
+6. **Modeling:** Com as análises feitas na EDA (Exploratory Data Analysis) e utilizando o algoritmo Extra Tree Classifier, conseguimos ter ainda mais clareza acerca das variáveis importantes para o modelo. Nesta etapa, além de converter as variáveis categóricas em númericas, iremos normalizar seus valores e balancear o nosso conjunto de dados, visando um melhor desempenho para os modelos.
 
 7. **ML Algorithms:** Nesta etapa iremos construir diferentes modelos de machine learning, incluindo um modelo simples (dummy classifier) que servirá como base para os demais. Aqui também faremos uso da cross-validation para garantir valores assertivos das métricas de todos os modelos criados. Os modelos usados foram: KNN, Regressão Logística, SVM, Random Forest e AdaBoost.
 
@@ -63,15 +64,19 @@ O desenvolvimento da solução seguirá a metodologia CRISP-DM/DS:
 
 # 4.0 - Top Data Insights
 
+Durante a Análise exploratória de dados (AED), foi possível encontrar não só algumas relações entre as variáveis, mas também insights acionáveis que podem agregar bastante valor para o negócio. Essas descobertas são importantes pois conseguimos gerar valor para a empresa mesmo antes da construção de um modelo de machine learning. Os principais insights foram:
+
 - A maior taxa de churn (40%) está entre os clientes com até 5 meses de contrato.
 - 83% dos clientes que entraram em churn não tinham suporte técnico.
 - Dentre os clientes que entraram em churn, 75% fazem uso do pagamento digital.
 
-<img src="images/churn_chart.JPG" alt="logo" style="zoom:70% ;" />
+<img src="images/churn_chart.JPG" alt="logo" style="zoom:85% ;" />
 
 # 5.0 - Machine Learning Models
 
-Após o balanceamento dos dados, dividimos em dados de treino, validação e teste. Aqui, é importante garantir que os dados estejam normalizados.
+Após o balanceamento dos dados, dividimos em dados de treino, validação e teste. Aqui, é importante garantir que os dados estejam normalizados, pois a maior parte dos algoritmos usados podem ser prejudicados por conta de dados com amplitudes diferentes.
+
+O desenvolvimento dos modelos passou por 3 ciclos (<a href="https://github.com/rodrigomm92/alura_challenge_ds/tree/main/notebooks">Notebooks</a>), onde aos poucos fui testando a performance dos modelos, com diferentes normalizações, balanceamentos e com diferentes escolhas de variáveis.
 
 ## 5.1 - Models Performance (Cross-Validation)
 
@@ -83,9 +88,11 @@ Após o balanceamento dos dados, dividimos em dados de treino, validação e tes
 |AdaBoost | 0.772+/-0.018|	0.825+/-0.02|	0.746+/-0.02|	0.784+/-0.016
 |Regressão Logística | 0.77+/-0.012|	0.813+/-0.01|	0.748+/-0.022|	0.779+/-0.008
 
-Pelas métricas alcançadas, o modelo escolhido foi o Random Forest. Por limitações de hardware, não foi possível percorrer um grande grid de parâmetros no GridSearch (Hyperparameter Fine Tuning). Logo, o modelo final apresentou as mesmas métricas que o modelo acima de cross-validation.
+Pelas métricas alcançadas, o modelo escolhido foi o Random Forest, pois não só apresentou as melhores médias das métricas, como também menor variação (baixo desvio padrão). Por limitações de hardware, não foi possível percorrer um grande grid de parâmetros no GridSearch (Hyperparameter Fine Tuning). Logo, o modelo final apresentou praticamente o mesmo desempenho que o modelo acima de cross-validation.
 
 ## 5.1 - Final Performance (With Test Data)
+
+Com o modelo treinado e devidamente otimizado, utilizaremos os dados de teste para validar a sua performance e capacidade de generalização. Este resultado é bastante importante para decidirmos se iremos continuar com o modelo (apresentando boas métricas) ou descontinuá-lo e desenvolver novos modelos nos próximos ciclos CRISP-DM.
 
 |Modelo | Acurácia | Recall | Precisão | F1-Score
 ------------ | ------------- | ------------- | ------------- | -------------
@@ -95,16 +102,34 @@ Pelas métricas alcançadas, o modelo escolhido foi o Random Forest. Por limita�
 
 <spacer type="horizontal" width="100" height="100">  </spacer>
 
-Com os valores encontrados, podemos assumir que o modelo conseguiu aprender bem com os dados de treino e teve uma boa generalização para os dados nunca vistos.
+Com os valores encontrados, podemos garantir que o modelo conseguiu aprender bem com os dados de treino e teve uma boa generalização para os dados nunca vistos. Além disso, devido ao alto valor de Recall, nosso modelo conseguiu prever corretamente 95% de todos os clientes que realmente entraram em churn. Isso tem um valor muito importante para o negócio, pois há praticamente a garantia de que encontramos todos os clientes que irão entrar em churn.
 
 # 6.0 - Overall Business Results
 
+Após obter os resultados técnicos do nosso modelo, é de extrema importância comunicar este desempenho falando na linguagem de negócio. Portanto, considerando que os nossos dados de teste fossem a simulação de dados de clientes futuros, utilizaremos esse conjunto para projetar nosso faturamento.
+
+Com esses dados, aplicaremos o nosso modelo e obteremos uma lista de clientes que entrarão em churn e os que não entrarão. A partir daí, calcularemos quantos reais os clientes em churn deixarão de gastar com a nossa empresa, levando em consideração a nossa taxa de recall de 95%. Essa quantia será o nosso benefício, pois consideraremos que com o nosso modelo e a estratégia do time de negócio, conseguiremos manter tais clientes.
+
+**Com a aplicação do modelo, no primeiro ano esperamos ter um faturamento de R$ 275,347.57**
 
 # 7.0 - Conclusions
+
+Após cumpridas todas as etapas de desenvolvimento do nosso projeto, conseguimos ter insights valiosos, modelo robusto apresentando excelentes métricas e um valor em reais de benefício após o projeto implementado. Com isso, conseguimos gerar muito valor ao time de negócios e à empresa como um todo. Principais aspectos do projeto:
+
+- Como 82% dos clientes que entraram em churn têm o plano sem dependentes, uma ação para diminuir essa taxa pode ser incentivar clientes a assinarem planos com dependentes, ou planos com ideia semelhante, como planos familiares,amigos, etc.
+
+- De forma bem parecida, temos que 83% dos clientes que entratam em churn não tem suporte técnico. Logo, uma ação para diminuir essa taxa pode ser incentivar o cliente a adquirir o suporte técnico.
+
+- Notamos que dos clientes que entraram em churn, 75% estavam optando pelo pagamento digital. Isso é inesperado pois esperávamos justamente o comportamento oposto. Logo, esta descoberta servirá para guiar os demais times no intuito de entender os problemas técnicos deste meio de pagamento
+
+- Nosso modelo apresentou altos valores de Recall, Acurácia e Precisão. Mostrando ser um modelo bastante confiável para ser colocado em produção
+
+- Com a implementação deste modelo, esperamos que em um ano obtenhamos um faturamento de R$ 275,347.57.
 
 
 # 8.0 - Next steps
 
+- Realizar o deploy do modelo em cloud, para que seja acessível a demais usuários.
 
 # 9.0 - Used Tools
 
