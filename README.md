@@ -90,7 +90,7 @@ O desenvolvimento dos modelos passou por 3 ciclos (<a href="https://github.com/r
 
 Pelas métricas alcançadas, o modelo escolhido foi o Random Forest, pois não só apresentou as melhores médias das métricas, como também menor variação (baixo desvio padrão). Por limitações de hardware, não foi possível percorrer um grande grid de parâmetros no GridSearch (Hyperparameter Fine Tuning). Logo, o modelo final apresentou praticamente o mesmo desempenho que o modelo acima de cross-validation.
 
-## 5.1 - Final Performance (With Test Data)
+## 5.2 - Final Performance (With Test Data)
 
 Com o modelo treinado e devidamente otimizado, utilizaremos os dados de teste para validar a sua performance e capacidade de generalização. Este resultado é bastante importante para decidirmos se iremos continuar com o modelo (apresentando boas métricas) ou descontinuá-lo e desenvolver novos modelos nos próximos ciclos CRISP-DM.
 
