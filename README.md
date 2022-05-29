@@ -60,7 +60,7 @@ O desenvolvimento da solução seguirá a metodologia CRISP-DM/DS:
 
 8. **Evaluation:** Para avaliar os modelos criados, utilizaremos as métricas de Precisão, Recall, Acurácia e F1-Score. A decisão da métrica preferencial será escolhida durante as reuniões de cada ciclo CRISP-DM do projeto.
 
-9. **Deployment:**
+9. **Deployment:** Hospedaremos o modelo na plataforma Heroku e construiremos uma planilha no <a href="https://docs.google.com/spreadsheets/d/1Rt2fCdObgfHK0mzz1MEyx0qarrS0muf7-wHWMpy1lsM/edit#gid=0">Google Sheets</a> para que o time de negócio possa interagir com nosso modelo. O usuário irá colocar as informações dos clientes na planilha e com um código escrito em JavaScript, a planilha fará requisições API para o nosso modelo, obtendo assim a resposta se o cliente irá entrar ou não em churn.
 
 # 4.0 - Top Data Insights
 
@@ -129,7 +129,8 @@ Após cumpridas todas as etapas de desenvolvimento do nosso projeto, conseguimos
 
 # 8.0 - Next steps
 
-- Realizar o deploy do modelo em cloud, para que seja acessível a demais usuários.
+- Coletar mais informações sobre os clientes, visando melhorar ainda mais nosso modelo.
+- Utilizar outros algoritmos para segmentar a base de clientes em grupos, de forma a direcionar as melhores estratégias para retenção destes clientes
 
 # 9.0 - Used Tools
 
@@ -137,6 +138,6 @@ Após cumpridas todas as etapas de desenvolvimento do nosso projeto, conseguimos
 
 ![Jupyter Notebook](https://img.shields.io/badge/jupyter-%23FA0F00.svg?style=for-the-badge&logo=jupyter&logoColor=white)
 
-<!-- ![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
+![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
 
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black) -->
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
